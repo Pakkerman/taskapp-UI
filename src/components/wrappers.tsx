@@ -31,16 +31,15 @@ export const TasksItemRowWrapper = (props: {
   name: string
   deadline: string
   task: string
-  status: "In Prograss" | "Review" | "Done"
+  status: "In Progress" | "Review" | "Done"
   project: string
   children?: JSX.Element
 }) => {
   const { name, deadline, task, status, project } = props
-  console.log(name)
 
   let statusColor = "bg-customTrinidad"
   switch (status) {
-    case "In Prograss":
+    case "In Progress":
       statusColor = "bg-customTrinidad text-customTrinidad"
       break
     case "Review":
@@ -74,6 +73,14 @@ export const TasksItemRowWrapper = (props: {
           Details
         </button>
       </div>
+    </div>
+  )
+}
+
+export const CardWrapper = (props: { children: JSX.Element }) => {
+  return (
+    <div className="flex h-full w-full flex-col space-y-2 rounded-[15px] bg-customMenuBackground p-6">
+      {props.children}
     </div>
   )
 }
