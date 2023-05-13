@@ -1,13 +1,28 @@
+import { useEffect, useState } from "react"
+
 export const ChartBar = (props: { progress: number; color: string }) => {
+  const [progress, setProgress] = useState(0 + props.progress)
   const bgColor = `bg-${props.color}`
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) prev = 0
+        return prev + 2
+      })
+    }, 100)
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
   return (
     <div className=" relative flex h-[81%] w-8 flex-col items-center justify-end">
       <div
-        style={{ height: props.progress.toString() + "%" }}
+        style={{ height: progress.toString() + "%" }}
         className={` w-full rounded-md ${bgColor}`}
       ></div>
       <p className="absolute pb-1 text-xs font-bold text-customMenuBackground">
-        {props.progress}%
+        {progress}%
       </p>
     </div>
   )

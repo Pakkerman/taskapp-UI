@@ -4,8 +4,10 @@ import { IoIosPeople, IoMdStats } from "react-icons/io"
 import { MdSpaceDashboard } from "react-icons/md"
 import { SiTask } from "react-icons/si"
 import { MenuItemWrapper } from "./wrappers"
+import { useEffect, useState } from "react"
 
 const Nav = () => {
+  const [selected, setSelected] = useState(0)
   const menuItems = ["Dashboard", "My Tasks", "Stats", "Profiles", "Settings"]
   const classname = "w-6 duration-200 group-hover:text-customPelorous"
   const icons = [
@@ -15,6 +17,18 @@ const Nav = () => {
     <IoIosPeople key={4} className={classname} size={24} />,
     <AiTwotoneSetting key={5} className={classname} size={24} />,
   ]
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSelected((prev) => {
+        if (prev > 5) return 0
+        return prev + 1
+      })
+    }, 1000)
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
 
   return (
     <div className="col-start-1 flex h-full  flex-col justify-evenly bg-customMenuBackground px-8 py-8">
@@ -27,7 +41,11 @@ const Nav = () => {
       <div className="flex-[0_0_40%]">
         <ul className=" flex  flex-col space-y-1">
           {menuItems.map((item, idx) => (
-            <MenuItemWrapper key={item} title={item}>
+            <MenuItemWrapper
+              key={item}
+              selected={selected === idx}
+              title={item}
+            >
               {icons[idx]!}
             </MenuItemWrapper>
           ))}

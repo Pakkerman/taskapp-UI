@@ -3,7 +3,12 @@ import { type NextPage } from "next"
 import { CiCalendarDate, CiSearch } from "react-icons/ci"
 import { CgProfile } from "react-icons/cg"
 import { FiMoreHorizontal } from "react-icons/fi"
-import { FaCalendarCheck, FaCubes, FaForward } from "react-icons/fa"
+import {
+  FaCalendarCheck,
+  FaCubes,
+  FaForward,
+  FaRegCalendarCheck,
+} from "react-icons/fa"
 
 import Head from "next/head"
 import Link from "next/link"
@@ -15,19 +20,11 @@ import {
 } from "~/components/wrappers"
 import Nav from "~/components/Nav"
 import { ChartBG, ChartBar } from "~/components/Chart"
-
-const Button = (props: { text: string; color: "primary" | "warning" }) => {
-  const { text, color } = props
-  let bgColor = "bg-customPelorous"
-  if (color === "warning") {
-    bgColor = "bg-customWarning"
-  }
-  return (
-    <button className={` h-8 rounded-lg text-customBunker ${bgColor} px-4`}>
-      {text}
-    </button>
-  )
-}
+import ProgressBar from "~/components/ProgressBar"
+import ProjectMemebers from "~/components/ProjectMemebers"
+import TaskActivityMenuButtons from "~/components/TaskActivityMenuButtons"
+import Button from "~/components/Buttons/Button"
+import MoreButton from "~/components/Buttons/MoreButton"
 
 const Home: NextPage = () => {
   return (
@@ -58,7 +55,34 @@ const Home: NextPage = () => {
             {/* 3 cards */}
             <div className="flex-[1_1_30%]">
               <CardWrapper>
-                <div></div>
+                <div className=" flex h-full flex-col">
+                  <div className="flex h-10 items-center justify-between">
+                    <Button text="#Design" />
+                    <MoreButton />
+                  </div>
+                  <div className=" flex h-10 items-center  space-x-2">
+                    <p className="text-lg font-bold">Pakland Lab</p>
+                  </div>
+                  <div className="flex h-8 items-center">
+                    <ProgressBar />
+                  </div>
+                  {/* people */}
+                  <div className=" flex h-16 w-full items-center">
+                    <ProjectMemebers />
+                  </div>
+                  <div className="flex h-10 items-center space-x-2">
+                    <FaRegCalendarCheck
+                      size={20}
+                      className="text-customTrinidad"
+                    />
+                    <p className="text-sm text-customIronsideGray">
+                      {new Date().toDateString()}
+                    </p>
+                  </div>
+                  <button className="h-10 w-full rounded-lg bg-customPelorous text-customBunker transition-all duration-300 hover:mix-blend-screen">
+                    See All Projects
+                  </button>
+                </div>
               </CardWrapper>
             </div>
             <div className="flex-[1_1_40%]">
@@ -66,12 +90,9 @@ const Home: NextPage = () => {
                 <div className="relative flex h-full flex-col">
                   <div className="flex h-6 items-center justify-between">
                     <h1 className="font-bold">Overall Infomation</h1>
-                    <FiMoreHorizontal
-                      size={24}
-                      className="text-customIronsideGray "
-                    />
+                    <MoreButton />
                   </div>
-                  <div className=" flex h-8 items-center space-x-2">
+                  <div className="flex h-16 items-center space-x-2">
                     <h1 className="text-3xl ">57</h1>
                     <div className="h-6 w-[1px] translate-y-1 bg-customIron" />
                     <h1 className="text-3xl">124</h1>
@@ -79,22 +100,22 @@ const Home: NextPage = () => {
                       tasks done
                     </h4>
                   </div>
-                  <div className=" flex h-full items-center justify-between">
-                    <div className="flex h-[75%] w-[28%] flex-col items-center justify-center space-y-1 rounded-lg bg-customWarning text-customTuatara">
+                  <div className="flex h-full items-center justify-between">
+                    <div className="flex h-[75%] w-[30%] flex-col items-center justify-center space-y-1 rounded-lg bg-customWarning text-customTuatara">
                       <div className="flex h-6 items-center ">
                         <FaCubes size={24} />
                       </div>
                       <p className="h-10 text-3xl font-bold ">42</p>
                       <p className="text-sm ">Projects</p>
                     </div>
-                    <div className="flex h-[75%] w-[28%] flex-col items-center justify-center space-y-1 rounded-lg bg-customPelorous text-customTuatara">
+                    <div className="flex h-[75%] w-[30%] flex-col items-center justify-center space-y-1 rounded-lg bg-customPelorous text-customTuatara">
                       <div className="flex h-6 items-center">
                         <FaForward size={22} />
                       </div>
                       <p className="h-10 text-3xl font-bold">08</p>
                       <p className="text-sm ">In Progress</p>
                     </div>
-                    <div className="flex h-[75%] w-[28%] flex-col items-center justify-center space-y-1 rounded-lg bg-customTrinidad text-customTuatara">
+                    <div className="flex h-[75%] w-[30%] flex-col items-center justify-center space-y-1 rounded-lg bg-customTrinidad text-customTuatara">
                       <div className="flex h-6 items-center">
                         <FaCalendarCheck size={22} />
                       </div>
@@ -133,7 +154,11 @@ const Home: NextPage = () => {
             </div>
           </section>
           <section className="flex-[1_1_30%] truncate ">
-            <h1 className="pb-4 text-xl font-bold">Tasks Activity</h1>
+            <div className="flex items-center justify-between">
+              <h1 className="pb-4 text-xl font-bold">Tasks Activity</h1>
+              <TaskActivityMenuButtons />
+            </div>
+
             <div className="flex justify-between space-x-4 py-2 text-customIronsideGray">
               <div className="flex-[1_0_15%] ">
                 <h4>Assigned to</h4>

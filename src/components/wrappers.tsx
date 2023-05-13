@@ -1,11 +1,21 @@
 export const MenuItemWrapper = (props: {
   title: string
   children: JSX.Element
+  selected: boolean
 }) => {
+  console.log(props.selected)
   return (
-    <li className="group flex h-8 items-center space-x-2 rounded-lg p-2 py-5  duration-200 hover:cursor-pointer hover:bg-customTuatara">
+    <li
+      className={`group flex h-8 items-center space-x-2 rounded-lg p-2 py-5  duration-200 hover:cursor-pointer hover:bg-customTuatara ${
+        props.selected ? "cursor-pointer bg-customTuatara" : ""
+      }`}
+    >
       {props.children}
-      <p className="text-customIron duration-200 group-hover:text-customPelorous">
+      <p
+        className={`text-customIron duration-200 group-hover:text-customPelorous ${
+          props.selected ? "text-customPelorous" : ""
+        }`}
+      >
         {props.title}
       </p>
     </li>

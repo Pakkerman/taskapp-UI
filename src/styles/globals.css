@@ -6,7 +6,7 @@
 
 body {
   font-family: "raleway";
-  font-weight: 300;
+  font-weight: 400;
   @apply flex h-[100svh] flex-col items-center justify-center bg-customIron text-customTextWhite;
 }
 
