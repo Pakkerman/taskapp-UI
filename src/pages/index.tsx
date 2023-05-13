@@ -2,7 +2,6 @@ import { type NextPage } from "next"
 
 import { CiCalendarDate, CiSearch } from "react-icons/ci"
 import { CgProfile } from "react-icons/cg"
-import { FiMoreHorizontal } from "react-icons/fi"
 import {
   FaCalendarCheck,
   FaCubes,
@@ -47,7 +46,7 @@ const Home: NextPage = () => {
                 <CiCalendarDate />
               </li>
               <li className="flex h-10 w-10 items-center justify-center rounded-full bg-customMenuBackground">
-                <CgProfile />
+                <CgProfile size={28} className="text-customIron" />
               </li>
             </ul>
           </section>
